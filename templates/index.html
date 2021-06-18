@@ -1,0 +1,18 @@
+<h1>Todo</h1>
+<h3>List</h3>
+<ul>
+    {% for todo_item in all_items %}
+    <li>{{ todo_item.context }}
+        <form action="/delete/{{todo_item.id}}/" 
+                style="display: inline;"
+                method="POST">{% csrf_token %}
+            <input type="submit" value="Delete">
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+<form action="/add/" method="POST">{% csrf_token %}
+    <input type="text" name="context">
+    <input type="submit" value="add">
+</form>
